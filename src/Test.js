@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
 export default class Test extends Component{
+
+    componentDidMount()
+    {
+        console.log("Component mounted")
+    }
+
     state={
         toggle:this.props.toggle
     }
@@ -11,6 +17,10 @@ export default class Test extends Component{
     })
   }
 
+  submit =() =>{
+      this.setState = this.text.value
+  }
+
     render(){
         const {toggle} = this
         return(
@@ -19,9 +29,11 @@ export default class Test extends Component{
 
                 {this.state.toggle&&
                 <p>this wont be viseble</p>}
-
+                <Foo/>
+                <AgeChecker age={this.state}/>
                 <PropCheck text={this.props.text}/>
-
+                <input type="text" value={this.props.age} ref ={(input)=>this.text = input}/>
+                <button onClick={this.submit}></button>
                 <button onClick={toggle}>show /hide</button>
             </div>
         );  
@@ -36,4 +48,38 @@ class PropCheck extends Component{
         )
     }
 }
+
+class Foo extends Component {
+    handleClick() {
+      return(
+          <div>clicked</div>
+      )
+    }
+    render() {
+      return (<div> <button onClick={this.handleClick}>Click Me</button>
+      </div>)
+    }
+  }
+
+class AgeChecker extends Component{
+
+    CheckAge(){
+        var res = ""
+        if(this.props.age<18){
+            res = <div>age is 18+</div>
+        }
+        else{
+            res = <div>kut</div>
+        }
+        return res
+    }
+
+    render(){
+        return(
+            this.CheckAge()
+        )
+    }
+}
+
+
 
