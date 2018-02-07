@@ -8,7 +8,8 @@ export default class Test extends Component{
     }
 
     state={
-        toggle:this.props.toggle
+        toggle:this.props.toggle,
+        text:"ddd"
     }
 
   toggle = () =>{
@@ -17,8 +18,8 @@ export default class Test extends Component{
     })
   }
 
-  submit =() =>{
-      this.setState = this.text.value
+  submit = () =>{
+    this.setState({text:this.text.value})
   }
 
     render(){
@@ -26,14 +27,16 @@ export default class Test extends Component{
         return(
             <div>
                 <h1>Welcome</h1>
-
+                {this.state.text}
                 {this.state.toggle&&
                 <p>this wont be viseble</p>}
                 <Foo/>
                 <AgeChecker age={this.state}/>
                 <PropCheck text={this.props.text}/>
-                <input type="text" value={this.props.age} ref ={(input)=>this.text = input}/>
-                <button onClick={this.submit}></button>
+                <input type="text" ref ={(input)=>this.text = input}/>
+                <button onClick={this.submit}>submti</button>
+
+                {this.submit}
                 <button onClick={toggle}>show /hide</button>
             </div>
         );  
